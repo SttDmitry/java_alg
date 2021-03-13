@@ -88,19 +88,20 @@ public class Main {
 
 
         Random r = new Random();
-        MyArrayList<Integer> mal = new MyArrayList<>(10);
-        for (int i = 0; i < 10; i++) {
+        MyArrayList<Integer> mal = new MyArrayList<>(100000);
+        for (int i = 0; i < 100000; i++) {
             mal.add(r.nextInt(100));
         }
-        System.out.println(mal);
+//        System.out.println(mal);
+        long start = System.currentTimeMillis();
 
-
-//        mal.selectionSort();
+        mal.selectionSort();
 //        mal.insertionSort();
-        mal.bubbleSort();
+//        mal.bubbleSort();
+        long finish = System.currentTimeMillis();
+        long elapsed = finish - start;
 
-
-        System.out.println(mal);
+        System.out.println("Прошло времени, мс: " + elapsed);
 
     }
 }

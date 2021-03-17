@@ -167,9 +167,7 @@ public class MyArrayList<T extends Comparable<T>> {
         if (capacity*0.75 < size) {
             capacity *= 2;
             T[] listTemp = (T[]) new Comparable[capacity];
-            for (int i = 0; i < size; i++) {
-                listTemp = list.clone();
-            }
+            listTemp = list.clone();
             list = listTemp;
         }
     }

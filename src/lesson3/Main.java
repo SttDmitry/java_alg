@@ -28,18 +28,50 @@ public class Main {
 //        }
 //        System.out.println(myQueue);
 
-        MyPriorityQueue<Integer> mpq = new MyPriorityQueue<>();
-        mpq.insert(5);
-        mpq.insert(1);
-        mpq.insert(3);
-        mpq.insert(4);
-        mpq.insert(7);
-        mpq.insert(2);
+//        MyPriorityQueue<Integer> mpq = new MyPriorityQueue<>();
+//        mpq.insert(5);
+//        mpq.insert(1);
+//        mpq.insert(3);
+//        mpq.insert(4);
+//        mpq.insert(7);
+//        mpq.insert(2);
+//
+//        System.out.println(mpq);
+//        System.out.println(mpq.remove());
+//        System.out.println(mpq);
+//        mpq.insert(6);
+//        System.out.println(mpq);
 
-        System.out.println(mpq);
-        System.out.println(mpq.remove());
-        System.out.println(mpq);
-        mpq.insert(6);
-        System.out.println(mpq);
+        reverseWriting("Hello world!");
+
+        MyDeque<Integer> md = new MyDeque<>();
+        md.insertLeft(1);
+        md.insertLeft(2);
+        md.insertLeft(3);
+        md.insertLeft(4);
+        md.insertLeft(5);
+        System.out.println("\n"+md);
+        md.insertRight(6);
+        md.insertRight(7);
+        md.insertRight(8);
+        md.insertRight(9);
+        System.out.println(md);
+
+        System.out.println(md.removeLeft());
+        System.out.println(md.removeRight());
+        System.out.println(md);
+
+    }
+
+    public static void reverseWriting (String str) {
+        char[] arr;
+        arr = str.toCharArray();
+        MyStack<Character> ms = new MyStack<>(arr.length);
+        for (int i = 0; i < arr.length; i++) {
+            ms.push(arr[i]);
+        }
+        for (int j = ms.size(); j > 0; j--) {
+            System.out.print(ms.pop());
+        }
     }
 }

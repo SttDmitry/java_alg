@@ -20,8 +20,9 @@ public class MyLinkedList<T> implements Iterable<T> {
     }
 
     private class Iter implements Iterator<T> {
-        Node current = new Node(null, first);
-
+        Node current = new Node(last,null, null);
+        int index = size;
+        boolean nextPoint = false;
         @Override
         public boolean hasNext() {
             return current.getNext() != null;
@@ -29,13 +30,15 @@ public class MyLinkedList<T> implements Iterable<T> {
 
         @Override
         public T next() {
+            nextPoint = true;
+            index++;
             current = current.getNext();
             return current.getValue();
         }
     }
 
     private class ListIter extends Iter implements ListIterator<T> {
-        int index = 0;
+
 
         @Override
         public boolean hasPrevious() {
@@ -44,34 +47,59 @@ public class MyLinkedList<T> implements Iterable<T> {
 
         @Override
         public T previous() {
-            return null;
+            nextPoint = false;
+            index--;
+            current = current.getPrev();
+            return current.getValue();
         }
 
         @Override
         public int nextIndex() {
-            return 0;
+            return index;
         }
 
         @Override
         public int previousIndex() {
-            return 0;
+            return index-1;
         }
 
         //удаляет элемент который прошли методом next или prev
         @Override
         public void remove() {
-
+            if (nextPoint) {
+                current.getPrev().setNext(current.getNext());
+                current.getNext().setPrev(current.getPrev());
+                size--;
+            } else if (!nextPoint && current.getNext().getNext() == null) {
+                current.setNext(null);
+            } else if (!nextPoint && hasNext()) {
+                current.getNext().getNext().setPrev(current);
+                current.setNext(current.getNext().getNext());
+            }
         }
         //удаляет элементу который прошли методом next или prev
         @Override
         public void set(T t) {
-
+            if (nextPoint) {
+                current.setValue(t);
+            } else {
+                current.getNext().setValue(t);
+            }
         }
         //добавить эелемент после элемента который прошли методом next или prev
         // в направлении куда шли.
         @Override
         public void add(T t) {
-
+            if (nextPoint) {
+                Node newNode = new Node (current, t, current.getNext());
+                current.setNext(newNode);
+                newNode.getNext().setPrev(newNode);
+                current = newNode;
+            } else {
+                Node newNode = new Node (current, t, current.getNext());
+                current.setNext(newNode);
+                newNode.getNext().setPrev(newNode);
+            }
         }
     }
 

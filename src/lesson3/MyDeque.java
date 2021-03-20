@@ -126,7 +126,7 @@ public class MyDeque<T> {
 
     private int prevIndex(int index) {
         if (index == 0) {
-            return index - 1 + size;
+            return (index - 1 + list.length) % list.length;
         }
         return index - 1;
     }

@@ -118,7 +118,7 @@ public class Main {
         int tempSum = sum;
         int tempCap = cap;
         for (int j = 0; j < arr.size(); j++) {
-            if (sumCheck(arr,j)) {
+            if (sumCheck(arr,j) && cap - arr.get(j).getWeight() >=0) {
                 id = j;
 //                maxPrice = arr.get(j).getCostRelToWeight()+0.15;
                 checkForSums = true;

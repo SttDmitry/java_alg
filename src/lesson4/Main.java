@@ -28,12 +28,22 @@ public class Main {
 //        }
 
         ListIterator<String> li = mll.listiterator();
-        while(li.hasNext()){
-            System.out.println(li.next());
-        }
-//        while(li.hasPrevious()){
-//            System.out.println(li.previous());
+//        while(li.hasNext()){
+//            System.out.println(li.next());
 //        }
+        while(li.hasPrevious()){
+            System.out.println(li.previous());
+        }
+
+        System.out.println();
+        MyLinkedQueue<Integer> mlq = new MyLinkedQueue<>();
+        mlq.insert(1);
+        mlq.insert(2);
+        mlq.insert(3);
+        System.out.println(mlq);
+        System.out.println(mlq.remove());
+        System.out.println(mlq);
+        System.out.println(mlq.peekFront());
 
     }
 }

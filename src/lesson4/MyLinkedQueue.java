@@ -1,17 +1,17 @@
 package lesson4;
 
-public class MyLinkedStack<T> {
+public class MyLinkedQueue <T> {
     private MyLinkedList<T> ll = new MyLinkedList<>();
 
-    public void push(T item){
-        ll.insertLast(item);
+    public void insert(T item){
+        ll.insertFirst(item);
     }
 
-    public T peek(){
+    public T peekFront(){
         return ll.getLast();
     }
 
-    public T pop(){
+    public T remove(){
         return ll.removeLast();
     }
 
@@ -21,5 +21,10 @@ public class MyLinkedStack<T> {
 
     public boolean isEmpty(){
         return ll.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        return ll.toString();
     }
 }

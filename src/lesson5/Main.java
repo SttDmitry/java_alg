@@ -25,14 +25,16 @@ public class Main {
         Item i3 = new Item (1,1);
         Item i4 = new Item (1,2);
         Item i5 = new Item (8,4);
+        Item i6 = new Item (15,15);
 
         arr.add(i1);
         arr.add(i2);
         arr.add(i3);
         arr.add(i4);
         arr.add(i5);
+        arr.add(i6);
 
-        System.out.println(recPack(arr,15,0, true));
+        System.out.println(recPack(arr,15,0, 0, true));
 
     }
 
@@ -108,8 +110,13 @@ public class Main {
         }
     }
 
-    public static long recPack (ArrayList<Item> arr, int cap, int sum, boolean idCheck){
+    public static long recPack (ArrayList<Item> arr, int cap, int sum, int weights, boolean idCheck){
         if (cap == 0 || !idCheck) {
+            for (int k = 0; k < arr.size(); k++) {
+                if (arr.get(k).getCost() > sum && arr.get(k).getWeight() <= weights + cap) {
+                    return arr.get(k).getCost();
+                }
+            }
             return sum;
         }
         boolean checkForSums = false;
@@ -117,6 +124,7 @@ public class Main {
         int id=-1;
         int tempSum = sum;
         int tempCap = cap;
+        int tempWeight = weights;
         for (int j = 0; j < arr.size(); j++) {
             if (sumCheck(arr,j) && cap - arr.get(j).getWeight() >=0) {
                 id = j;
@@ -135,9 +143,10 @@ public class Main {
         if (id >= 0){
             tempSum += arr.get(id).getCost();
             tempCap -= arr.get(id).getWeight();
+            tempWeight += arr.get(id).getWeight();
             arr.remove(id);
         }
-        return recPack(arr,tempCap, tempSum, id >=0);
+        return recPack(arr,tempCap, tempSum, tempWeight,id >=0);
     }
 
     public static class Item {

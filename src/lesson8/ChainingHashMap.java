@@ -88,5 +88,11 @@ public class ChainingHashMap<Key, Value> {
         return sb.toString();
     }
 
+    public boolean remove(Key key) {
+        checkKeyNotNull(key);
+        int i = hash(key);
+        return  st[i].removeIf(node -> key.equals(node.key));
+    }
+
     //реализовать метод удаления.
 }

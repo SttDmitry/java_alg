@@ -10,9 +10,10 @@ public class Main {
 
         chm.put(1, "one");
         chm.put(2, "two");
+        chm.put(23, "twenty three");
         chm.put(3, "three");
         System.out.println(chm.get(2));
-        System.out.println(chm.remove(3));
+        System.out.println(chm.remove(2));
 
 //        for (int i = 0; i < 12; i++) {
 //            chm.put(random.nextInt(100), "");

@@ -91,7 +91,11 @@ public class ChainingHashMap<Key, Value> {
     public boolean remove(Key key) {
         checkKeyNotNull(key);
         int i = hash(key);
-        return  st[i].removeIf(node -> key.equals(node.key));
+        if (st[i].removeIf(node -> key.equals(node.key))) {
+            size --;
+            return true;
+        }
+        return  false;
     }
 
     //реализовать метод удаления.
